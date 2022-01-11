@@ -14,23 +14,32 @@ SRCS = $(addsuffix .c, $(FILES))
 OBJS = $(addsuffix .o, $(FILES))
 
 .c.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	@$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
-	$(MAKE)  -C ./libft
-	$(MAKE)  -C ./libft bonus
-	mv ./libft/libft.a .
-	$(CC) $(CFLAGS) $(OBJS) libft.a -o $(NAME)
+	@$(MAKE)  -C ./libft
+	@$(MAKE)  -C ./libft bonus
+	@mv ./libft/libft.a .
+	@$(CC) $(CFLAGS) $(OBJS) libft.a -o $(NAME)
+	@mkdir -p objs
+	@mkdir -p bins
+	@mv ./libft.a ./bins
+	@mv ./libft/*.o ./objs
+	@mv ./*.o ./objs
+	@echo "##### PUSH SWAP SUCESFULLY COMPILED #####"
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) ./objs
+	@echo "##### ALL OBJECTS PURGED #####"
+
+fclean: clean
+	@$(RM) ./bins
+	@$(RM) ./push_swap
+	@echo "##### ALL EXECUTABLES PURGED #####"
 
 all: $(NAME)
 
 re: clean all
-
-fclean: clean
-	$(RM) $(NAME) libft.a
 
 .PHONY: all re clean fclean
 

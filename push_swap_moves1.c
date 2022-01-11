@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_moves1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:20:43 by aalvarez          #+#    #+#             */
-/*   Updated: 2021/10/01 14:39:19 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:45:07by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap_a(t_list **head_a, int check)
+void	ft_swap_a(t_list **head_a, int check/*, t_list **head_b*/)
 {
 	t_list	*pivot;
 
@@ -23,9 +23,10 @@ void	ft_swap_a(t_list **head_a, int check)
 	ft_lstadd_front(head_a, pivot);
 	if (check == 0)
 		write(1, "sa\n", 3);
+	//ft_imprimir(*head_a, *head_b);
 }
 
-void	ft_swap_b(t_list **head_b, int check)
+void	ft_swap_b(t_list **head_b, int check/*, t_list **head_a*/)
 {
 	t_list	*pivot;
 
@@ -35,13 +36,14 @@ void	ft_swap_b(t_list **head_b, int check)
 	(*head_b)->next = pivot->next;
 	ft_lstadd_front(head_b, pivot);
 	if (check == 0)
-		write(1, "sb\n", 3);
+		write(1, "sb\n", 3);	
+	//ft_imprimir(*head_a, *head_b);
 }
 
 void	ft_swap_ab(t_list **head_a, t_list **head_b)
 {
-	ft_swap_a(head_a, 1);
-	ft_swap_b(head_b, 1);
+	ft_swap_a(head_a, 1/*, head_b*/);
+	ft_swap_b(head_b, 1/*, head_a*/);
 	write(1, "ss\n", 3);
 }
 
@@ -58,6 +60,7 @@ void	ft_push_a(t_list **head_a, t_list **head_b)
 	ft_lstadd_front(head_a, pivot);
 	*head_b = new_b;
 	write(1, "pa\n", 3);
+	//ft_imprimir(*head_a, *head_b);
 }
 
 void	ft_push_b(t_list **head_a, t_list **head_b)
@@ -72,4 +75,5 @@ void	ft_push_b(t_list **head_a, t_list **head_b)
 	ft_lstadd_front(head_b, pivot);
 	*head_a = new_a;
 	write(1, "pb\n", 3);
+	//ft_imprimir(*head_a, *head_b);
 }

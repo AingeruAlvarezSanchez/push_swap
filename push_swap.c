@@ -3,15 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:48:19 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/03 13:12:53 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/10 18:06:46by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
+
+/*void ft_imprimir(t_list *head_a, t_list *head_b)
+{
+    int i;
+
+    i = 1;
+    printf("\n\n            ///////////////////////////////////////////////////////////////////////////\n\n");
+    printf("\t       A       \t       B       \n");
+    printf("\t|-------------|\t|-------------|\n");
+    while (head_a || head_b)
+    {
+        if ( head_b && !head_a)
+            printf("%d   \t|             |\t| %11d |\n", i, (int)head_b->content);
+        else if (head_a && !head_b)
+            printf("%d   \t| %11d |\t|             |\n", i, (int)head_a->content);
+        else
+            printf("%d   \t| %11d |\t| %11d |\n", i, (int)head_a->content, (int)head_b->content);
+        if ( head_a != NULL)
+            head_a = head_a->next;
+        if (head_b != NULL)
+            head_b = head_b->next;
+        i++;
+    }
+    printf("\t|-------------|\t|-------------|\n");
+}*/
 
 int	ft_efficiency(t_list **head_a, int pivot)
 {
@@ -59,42 +84,49 @@ void	ft_less_short(t_list **head_a, t_list **head_b)
 	{
 		while ((int)(*head_a)->content != pivot)
 		{
-			ft_rrotate_a(head_a, 0);
+			ft_rrotate_a(head_a, 0/*, head_b*/);
 		}
 	}
 	else if ((ft_lstsize(*head_a) / 2) >= count)
 	{
 		while ((int)(*head_a)->content != pivot)
-			ft_rotate_a(head_a, 0);
+		{
+			ft_rotate_a(head_a, 0/*, head_b*/);
+		}
 	}
 	ft_push_b(head_a, head_b);
 	if (ft_lstsize(*head_a) > 3)
 		ft_less_short(head_a, head_b);
 }
 
-void	ft_short_cases(t_list **head_a)
+void	ft_short_cases(t_list **head_a/*, t_list **head_b*/)
 {
-	if ((*head_a)->content > (*head_a)->next->content
-		&& (*head_a)->next->content > (*head_a)->next->next->content)
-	{
-		ft_swap_a(head_a, 0);
-		ft_rrotate_a(head_a, 0);
-	}
-	else if ((*head_a)->content < (*head_a)->next->next->content
-		&& (*head_a)->content > (*head_a)->next->content)
-		ft_swap_a(head_a, 0);
-	else if ((*head_a)->content > (*head_a)->next->content
-		&& (*head_a)->next->content < (*head_a)->next->next->content)
-		ft_rotate_a(head_a, 0);
-	else if ((*head_a)->content < (*head_a)->next->next->content
-		&& (*head_a)->content < (*head_a)->next->content)
-	{
-		ft_rrotate_a(head_a, 0);
-		ft_swap_a(head_a, 0);
-	}
-	else if ((*head_a)->content > (*head_a)->next->next->content
-		&& (*head_a)->content < (*head_a)->next->content)
-		ft_rrotate_a(head_a, 0);
+	if (((*head_a)->content < (*head_a)->next->content)
+		&& ((*head_a)->next->content > (*head_a)->next->next->content)
+		&& ((*head_a)->content > (*head_a)->next->next->content))
+			ft_rrotate_a(head_a, 0/*, head_b*/);
+	else if (((*head_a)->content > (*head_a)->next->content)
+		&& ((*head_a)->next->content < (*head_a)->next->next->content))
+		{		
+			if (((*head_a)->content) > ((*head_a)->next->next->content))
+				ft_rotate_a(head_a, 0/*, head_b*/);
+			else
+				ft_swap_a(head_a, 0/*, head_b*/);
+		}
+	else if (((*head_a)->content > (*head_a)->next->content)
+		&& ((*head_a)->next->content > (*head_a)->next->next->content)
+		&& (*head_a)->content > (*head_a)->next->next->content)
+		{
+			ft_swap_a(head_a, 0/*, head_b*/);
+			ft_rrotate_a(head_a, 0/*, head_b*/);
+		}
+	else if (((*head_a)->content < (*head_a)->next->content)
+		&& ((*head_a)->next->content > (*head_a)->next->next->content)
+		&& (*head_a)->content < (*head_a)->next->next->content)
+		{
+			ft_rrotate_a(head_a, 0/*, head_b*/);
+			ft_swap_a(head_a, 0/*, head_b*/);
+		}
 }
 
 void	ft_find_pivot(t_list **head_a, t_list **head_b)
@@ -103,13 +135,11 @@ void	ft_find_pivot(t_list **head_a, t_list **head_b)
 	int		center;
 	int		count;
 
-	pivot = *head_a;
-	center = 0;
 	count = -1;
 	center = ft_lstsize(*head_a);
 	pivot = *head_a;
 	if (center == 3)
-		ft_short_cases(head_a);
+		ft_short_cases(head_a/*, head_b*/);
 	if (center % 2 != 0)
 		center++;
 	center /= 2;
@@ -118,12 +148,10 @@ void	ft_find_pivot(t_list **head_a, t_list **head_b)
 	if (center > 2 && center < 5)
 	{
 		ft_less_short(head_a, head_b);
-		ft_short_cases(head_a);
+		ft_short_cases(head_a/*, head_b*/);
 		while (ft_lstsize(*head_b))
 			ft_push_a(head_a, head_b);
 	}
-	printf("PIVOT POS: %d\n", (int)pivot->content);
-	//ft_start_organize(head_a, head_b, &pivot);
 }
 
 int	main(int argc, char **argv)
@@ -139,16 +167,6 @@ int	main(int argc, char **argv)
 	ft_norepeat(head_a);
 	ft_already_sorted(head_a);
 	ft_find_pivot(&head_a, &head_b);
-	while (head_a)
-	{
-		printf("[%d]\n", (int)head_a->content);
-		head_a = head_a->next;
-	}
-	while (head_b)
-	{
-		printf("(%d)\n", (int)head_b->content);
-		head_b = head_b->next;
-	}
 	free (head_b);
 	//system("leaks push_swap");
 	return (0);

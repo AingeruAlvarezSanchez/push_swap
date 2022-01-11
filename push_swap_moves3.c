@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_moves3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 15:43:58 by aalvarez          #+#    #+#             */
-/*   Updated: 2021/10/01 18:38:57 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:12:02 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rrotate_a(t_list **head_a, int check)
+void	ft_rrotate_a(t_list **head_a, int check/*, t_list **head_b*/)
 {
 	t_list	*pivot;
 	t_list	*pivot2;
@@ -25,9 +25,10 @@ void	ft_rrotate_a(t_list **head_a, int check)
 	pivot2->next = NULL;
 	if (check == 0)
 		write(1, "rra\n", 4);
+	//ft_imprimir(*head_a, *head_b);
 }
 
-void	ft_rrotate_b(t_list **head_b, int check)
+void	ft_rrotate_b(t_list **head_b, int check/*, t_list **head_a*/)
 {
 	t_list	*pivot;
 	t_list	*pivot2;
@@ -40,11 +41,12 @@ void	ft_rrotate_b(t_list **head_b, int check)
 	pivot2->next = NULL;
 	if (check == 0)
 		write(1, "rra\n", 4);
+	//ft_imprimir(*head_a, *head_b);
 }
 
 void	ft_rrotate_ab(t_list **head_a, t_list **head_b)
 {
-	ft_rrotate_a(head_a, 1);
-	ft_rrotate_b(head_b, 1);
+	ft_rrotate_a(head_a, 1/*, head_b*/);
+	ft_rrotate_b(head_b, 1/*, head_a*/);
 	write(1, "rrr\n", 4);
 }
