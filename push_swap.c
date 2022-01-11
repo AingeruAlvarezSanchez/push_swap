@@ -38,67 +38,6 @@
     printf("\t|-------------|\t|-------------|\n");
 }*/
 
-int	ft_efficiency(t_list **head_a, int pivot)
-{
-	t_list	*temp;
-	int		count;
-
-	count = 0;
-	temp = *head_a;
-	while (temp)
-	{
-		if ((int)temp->content == pivot)
-			return (count);
-		temp = temp->next;
-		count++;
-	}
-	return (0);
-}
-
-int	ft_smallest(t_list **head_a)
-{
-	t_list	*tmp;
-	int		num;
-
-	tmp = *head_a;
-	num = INT_MAX;
-	while (tmp)
-	{
-		if ((int)tmp->content < num)
-			num = (int)tmp->content;
-		tmp = tmp->next;
-	}
-	return (num);
-}
-
-void	ft_less_short(t_list **head_a, t_list **head_b)
-{
-	t_list	*check;
-	int		pivot;
-	int		count;
-
-	check = *head_a;
-	pivot = ft_smallest(head_a);
-	count = ft_efficiency(head_a, pivot) + 1;
-	if ((ft_lstsize(*head_a) / 2) < count)
-	{
-		while ((int)(*head_a)->content != pivot)
-		{
-			ft_rrotate_a(head_a, 0/*, head_b*/);
-		}
-	}
-	else if ((ft_lstsize(*head_a) / 2) >= count)
-	{
-		while ((int)(*head_a)->content != pivot)
-		{
-			ft_rotate_a(head_a, 0/*, head_b*/);
-		}
-	}
-	ft_push_b(head_a, head_b);
-	if (ft_lstsize(*head_a) > 3)
-		ft_less_short(head_a, head_b);
-}
-
 void	ft_short_cases(t_list **head_a/*, t_list **head_b*/)
 {
 	if (((*head_a)->content < (*head_a)->next->content)
@@ -129,28 +68,38 @@ void	ft_short_cases(t_list **head_a/*, t_list **head_b*/)
 		}
 }
 
-void	ft_find_pivot(t_list **head_a, t_list **head_b)
+void	ft_five_short(t_list **head_a, t_list **head_b)
 {
-	t_list	*pivot;
-	int		center;
-	int		count;
+	int	smallest;
+	int	count;
+	t_list	*aux;
 
-	count = -1;
-	center = ft_lstsize(*head_a);
-	pivot = *head_a;
-	if (center == 3)
-		ft_short_cases(head_a/*, head_b*/);
-	if (center % 2 != 0)
-		center++;
-	center /= 2;
-	while (++count < center - 1)
-		pivot = pivot->next;
-	if (center > 2 && center < 5)
+	count = ft_lstlast_count(*head_a);
+	smallest = ft_lstsmallest(*head_a);
+	aux = *head_a;
+	if (count == 3)
+		ft_short_cases(head_a);
+	else if (count == 4)
 	{
-		ft_less_short(head_a, head_b);
-		ft_short_cases(head_a/*, head_b*/);
-		while (ft_lstsize(*head_b))
-			ft_push_a(head_a, head_b);
+		while ((*head_a)->content != smallest)
+			ft_rotate_a(head_a, 0);
+		ft_push_b(head_a, head_b);
+		ft_short_cases(head_a);
+		ft_push_a(head_a, head_b);
+	}
+	else if (count == 5)
+	{
+		while (count != 3)
+		{
+			ft_rotate_a(head_a, 0);
+			if ((*head_a)->content == smallest)
+				ft_push_b(head_a, head_b);
+			smallest = ft_lstsmallest(*head_a);
+			count = ft_lstlast_count(*head_a);
+		}
+		ft_short_cases(head_a);
+		ft_push_a(head_a, head_b);
+		ft_push_a(head_a, head_b);
 	}
 }
 
@@ -166,7 +115,7 @@ int	main(int argc, char **argv)
 	head_a = ft_get_args(argc, argv, head_a);
 	ft_norepeat(head_a);
 	ft_already_sorted(head_a);
-	ft_find_pivot(&head_a, &head_b);
+	ft_five_short(&head_a, &head_b);
 	free (head_b);
 	//system("leaks push_swap");
 	return (0);
