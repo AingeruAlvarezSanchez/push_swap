@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 13:20:43 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/10 16:45:07by aalvarez         ###   ########.fr       */
+/*   Created: 2022/01/12 17:12:26 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/01/12 17:19:30 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_swap_b(t_list **head_b, int check/*, t_list **head_a*/)
 	(*head_b)->next = pivot->next;
 	ft_lstadd_front(head_b, pivot);
 	if (check == 0)
-		write(1, "sb\n", 3);	
+		write(1, "sb\n", 3);
 	//ft_imprimir(*head_a, *head_b);
 }
 

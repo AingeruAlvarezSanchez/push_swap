@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 12:07:09 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/11 10:08:49 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/12 16:51:24 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_list	*ft_lstlast(t_list *lst);
 int		ft_lstlast_count(t_list *lst);
 int		ft_lstsmallest(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+int		ft_check_best_option(t_list *lst, int count, int smallest);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif

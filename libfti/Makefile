@@ -6,7 +6,7 @@
 #    By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/24 12:12:22 by aalvarez          #+#    #+#              #
-#    Updated: 2022/01/11 10:18:31 by aalvarez         ###   ########.fr        #
+#    Updated: 2022/01/12 16:51:48 by aalvarez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_BONUS = ft_lstnew.c			\
 			ft_lstlast.c		\
 			ft_lstlast_count.c		\
 			ft_lstsmallest.c		\
+			ft_check_best_option.c		\
 			ft_lstadd_back.c
 
 INCLUDES = libft.h

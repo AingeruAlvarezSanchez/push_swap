@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 12:48:19 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/10 18:06:46by aalvarez         ###   ########.fr       */
+/*   Created: 2022/01/12 16:52:46 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/01/12 17:31:52 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,69 +38,36 @@
     printf("\t|-------------|\t|-------------|\n");
 }*/
 
-void	ft_short_cases(t_list **head_a/*, t_list **head_b*/)
+void	ft_three_cases(t_list **head_a/*, t_list **head_b*/)
 {
-	if (((*head_a)->content < (*head_a)->next->content)
-		&& ((*head_a)->next->content > (*head_a)->next->next->content)
-		&& ((*head_a)->content > (*head_a)->next->next->content))
-			ft_rrotate_a(head_a, 0/*, head_b*/);
-	else if (((*head_a)->content > (*head_a)->next->content)
-		&& ((*head_a)->next->content < (*head_a)->next->next->content))
-		{		
-			if (((*head_a)->content) > ((*head_a)->next->next->content))
-				ft_rotate_a(head_a, 0/*, head_b*/);
-			else
-				ft_swap_a(head_a, 0/*, head_b*/);
-		}
-	else if (((*head_a)->content > (*head_a)->next->content)
-		&& ((*head_a)->next->content > (*head_a)->next->next->content)
-		&& (*head_a)->content > (*head_a)->next->next->content)
-		{
-			ft_swap_a(head_a, 0/*, head_b*/);
-			ft_rrotate_a(head_a, 0/*, head_b*/);
-		}
-	else if (((*head_a)->content < (*head_a)->next->content)
-		&& ((*head_a)->next->content > (*head_a)->next->next->content)
-		&& (*head_a)->content < (*head_a)->next->next->content)
-		{
-			ft_rrotate_a(head_a, 0/*, head_b*/);
-			ft_swap_a(head_a, 0/*, head_b*/);
-		}
+	if ((((*head_a)->content < (*head_a)->next->content)
+			&& ((*head_a)->next->content > (*head_a)->next->next->content)
+			&& ((*head_a)->content > (*head_a)->next->next->content))
+		|| (((*head_a)->content > (*head_a)->next->content)
+			&& ((*head_a)->next->content < (*head_a)->next->next->content)))
+		ft_three_case_1_2(head_a);
+	else if ((((*head_a)->content > (*head_a)->next->content)
+			&& ((*head_a)->next->content > (*head_a)->next->next->content)
+			&& ((*head_a)->content > (*head_a)->next->next->content))
+		|| (((*head_a)->content < (*head_a)->next->content)
+			&& ((*head_a)->next->content > (*head_a)->next->next->content)
+			&& (*head_a)->content < (*head_a)->next->next->content))
+		ft_three_case_3_4(head_a);
 }
 
-void	ft_five_short(t_list **head_a, t_list **head_b)
+void	ft_five_or_less(t_list **head_a, t_list **head_b)
 {
-	int	smallest;
-	int	count;
+	int		smallest;
+	int		count;
 	t_list	*aux;
 
 	count = ft_lstlast_count(*head_a);
 	smallest = ft_lstsmallest(*head_a);
 	aux = *head_a;
-	if (count == 3)
-		ft_short_cases(head_a);
-	else if (count == 4)
-	{
-		while ((*head_a)->content != smallest)
-			ft_rotate_a(head_a, 0);
-		ft_push_b(head_a, head_b);
-		ft_short_cases(head_a);
-		ft_push_a(head_a, head_b);
-	}
-	else if (count == 5)
-	{
-		while (count != 3)
-		{
-			ft_rotate_a(head_a, 0);
-			if ((*head_a)->content == smallest)
-				ft_push_b(head_a, head_b);
-			smallest = ft_lstsmallest(*head_a);
-			count = ft_lstlast_count(*head_a);
-		}
-		ft_short_cases(head_a);
-		ft_push_a(head_a, head_b);
-		ft_push_a(head_a, head_b);
-	}
+	if (count == 3 || count == 4)
+		ft_four_or_less(head_a, head_b, count, smallest);
+	if (count == 5)
+		ft_five_numbers(head_a, head_b, count, smallest);
 }
 
 int	main(int argc, char **argv)
@@ -115,7 +82,7 @@ int	main(int argc, char **argv)
 	head_a = ft_get_args(argc, argv, head_a);
 	ft_norepeat(head_a);
 	ft_already_sorted(head_a);
-	ft_five_short(&head_a, &head_b);
+	ft_five_or_less(&head_a, &head_b);
 	free (head_b);
 	//system("leaks push_swap");
 	return (0);
