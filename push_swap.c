@@ -36,6 +36,26 @@
     }
     printf("\t|-------------|\t|-------------|\n");
 }*/
+
+int	ft_refind_small(t_list *head_a, int small)
+{
+	t_list	*aux;
+
+	aux = head_a;
+	small = INT_MAX;
+	while (aux)
+	{
+		if (aux->content < small && aux->checked == 0)
+		{
+			small = aux->content;
+			aux->checked = 1;
+		}
+		aux = aux->next;
+	}
+	printf("SMALL: %i\n", small);
+	return (small);
+}
+
 void	ft_give_pos(t_list **head_a, int small, int c)
 {
 	int		count;
@@ -49,16 +69,18 @@ void	ft_give_pos(t_list **head_a, int small, int c)
 	{
 		while (aux)
 		{
-			if (aux->content == small)
+			printf ("AUX_CONT; %i CHECK: %i\n", aux->content, aux->checked);
+			if (aux->content == small && aux->checked == 0)
 			{
 				aux->pos = i++;
-				aux->checked = 1;
-				small = aux->content;
+				small = ft_refind_small(*head_a, small);
+				aux = *head_a;
+				break ;
 			}
 			aux = aux->next;
-		}
-		aux = *head_a;
+		}	
 	}
+	aux = *head_a;
 	while (aux)
 	{
 		printf("HEAD_POS: %i CHECK; %i\n", aux->pos, aux->checked);
@@ -68,9 +90,6 @@ void	ft_give_pos(t_list **head_a, int small, int c)
 
 void	ft_radix(t_list **head_a, t_list **head_b, int small, int c)
 {
-	//t_list	*checker;
-
-	//checker = *head_a;
 	ft_give_pos(head_a, small, c);
 	/*while (checker)
 	{
