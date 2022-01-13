@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 12:29:57 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/12 17:28:41 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/13 14:40:30 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void	ft_rotate_ab(t_list **head_a, t_list **head_b);
 void	ft_rrotate_a(t_list **head_a, int check/*, t_list **head_b*/);
 void	ft_rrotate_b(t_list **head_b, int check/*, t_list **head_a*/);
 void	ft_rrotate_ab(t_list **head_a, t_list **head_b);
-void	ft_four_or_less(t_list **head_a, t_list **head_b, int c, int small);
-void	ft_five_numbers(t_list **head_a, t_list **head_b, int c, int small);
-void	ft_three_cases(t_list **head_a/*, t_list **head_b*/);
+void	ft_five_or_less(t_list **head_a, t_list **head_b, int small, int c);
 void ft_imprimir(t_list *head_a, t_list *head_b);
 
 #endif

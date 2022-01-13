@@ -6,13 +6,12 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:52:46 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/12 17:31:52 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:10:12by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
-
 /*void ft_imprimir(t_list *head_a, t_list *head_b)
 {
     int i;
@@ -37,56 +36,56 @@
     }
     printf("\t|-------------|\t|-------------|\n");
 }*/
-
-void	ft_three_cases(t_list **head_a/*, t_list **head_b*/)
+void	ft_give_pos(t_list **head_a, int small, int c)
 {
-	int	fs;
-	int	sc;
-	int	th;
+	int		count;
+	int		i;
+	t_list	*aux;
 
-	fs = (*head_a)->content;
-	sc = (*head_a)->next->content;
-	th = (*head_a)->next->next->content;
-	if (fs < sc && sc > th && fs > th)
-		ft_rrotate_a(head_a, 0/*, head_b*/);
-	else if(fs > sc && sc < th) 
+	aux = *head_a;
+	count = c + 1;
+	i = 1; ////cambiar a 0
+	while (--count)
 	{
-		if (fs > th)
-			ft_rotate_a(head_a, 0/*, head_b*/);
-		else
-			ft_swap_a(head_a, 0/*, head_b*/);
+		while (aux)
+		{
+			if (aux->content == small)
+			{
+				aux->pos = i++;
+				aux->checked = 1;
+				small = aux->content;
+			}
+			aux = aux->next;
+		}
+		aux = *head_a;
 	}
-	else if (fs > sc && sc > th && fs > th)
+	while (aux)
 	{
-		ft_swap_a(head_a, 0/*, head_b*/);
-		ft_rrotate_a(head_a, 0/*, head_b*/);
-	}
-	else if (fs < sc && sc > th && fs < th) 
-	{
-		ft_rrotate_a(head_a, 0/*, head_b*/);
-		ft_swap_a(head_a, 0/*, head_b*/);
+		printf("HEAD_POS: %i CHECK; %i\n", aux->pos, aux->checked);
+		aux = aux->next;
 	}
 }
 
-void	ft_five_or_less(t_list **head_a, t_list **head_b)
+void	ft_radix(t_list **head_a, t_list **head_b, int small, int c)
 {
-	int		smallest;
-	int		count;
-	t_list	*aux;
+	//t_list	*checker;
 
-	count = ft_lstlast_count(*head_a);
-	smallest = ft_lstsmallest(*head_a);
-	aux = *head_a;
-	if (count == 3 || count == 4)
-		ft_four_or_less(head_a, head_b, count, smallest);
-	if (count == 5)
-		ft_five_numbers(head_a, head_b, count, smallest);
+	//checker = *head_a;
+	ft_give_pos(head_a, small, c);
+	/*while (checker)
+	{
+		if (checker->content > checker->next->content)
+			ft_radix(head_a, head_b, small, c);
+		checker = checker->next;
+	}*/
 }
 
 int	main(int argc, char **argv)
 {
 	t_list	*head_a;
 	t_list	*head_b;
+	int		smallest;
+	int		count;
 
 	head_a = NULL;
 	head_b = NULL;
@@ -95,20 +94,11 @@ int	main(int argc, char **argv)
 	head_a = ft_get_args(argc, argv, head_a);
 	ft_norepeat(head_a);
 	ft_already_sorted(head_a);
-	ft_five_or_less(&head_a, &head_b);
+	smallest = ft_lstsmallest(head_a);
+	count = ft_lstlast_count(head_a);
+	ft_five_or_less(&head_a, &head_b, smallest, count);
+	ft_radix(&head_a, &head_b, smallest, count);
 	free (head_b);
 	//system("leaks push_swap");
 	return (0);
 }
-
-//ft_swap_a(&head_a, 0);
-//ft_swap_b(&head_b, 0);
-//ft_swap_ab(&head_a, &head_b);
-//ft_push_a(&head_a, &head_b);
-//ft_push_b(&head_a, &head_b);
-//ft_rotate_a(&head_a, 0);
-//ft_rotate_b(&head_b, 0);
-//ft_rotate_ab(&head_a, &head_b);
-//ft_rrotate_a(&head_a, 0);
-//ft_rrotate_b(&head_b, 0);
-//ft_rrotate_ab(&head_a, &head_b);
