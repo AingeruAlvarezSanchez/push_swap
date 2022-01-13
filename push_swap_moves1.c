@@ -54,7 +54,7 @@ void	ft_push_a(t_list **head_a, t_list **head_b)
 
 	pivot = *head_b;
 	new_b = NULL;
-	if (!pivot->content)
+	if (!pivot)
 		return ;
 	new_b = pivot->next;
 	ft_lstadd_front(head_a, pivot);
@@ -69,7 +69,7 @@ void	ft_push_b(t_list **head_a, t_list **head_b)
 	t_list	*new_a;
 
 	pivot = *head_a;
-	if (!pivot->content)
+	if (!pivot)
 		return ;
 	new_a = pivot->next;
 	ft_lstadd_front(head_b, pivot);

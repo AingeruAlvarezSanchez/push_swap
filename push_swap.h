@@ -36,8 +36,6 @@ void	ft_rrotate_ab(t_list **head_a, t_list **head_b);
 void	ft_four_or_less(t_list **head_a, t_list **head_b, int c, int small);
 void	ft_five_numbers(t_list **head_a, t_list **head_b, int c, int small);
 void	ft_three_cases(t_list **head_a/*, t_list **head_b*/);
-void	ft_three_case_1_2(t_list **head_a);
-void	ft_three_case_3_4(t_list **head_a);
 void ft_imprimir(t_list *head_a, t_list *head_b);
 
 #endif

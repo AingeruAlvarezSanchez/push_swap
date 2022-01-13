@@ -12,40 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_three_case_1_2(t_list **head_a)
-{
-	if (((*head_a)->content < (*head_a)->next->content)
-		&& ((*head_a)->next->content > (*head_a)->next->next->content)
-		&& ((*head_a)->content > (*head_a)->next->next->content))
-		ft_rrotate_a(head_a, 0/*, head_b*/);
-	else if (((*head_a)->content > (*head_a)->next->content)
-		&& ((*head_a)->next->content < (*head_a)->next->next->content))
-	{		
-		if (((*head_a)->content) > ((*head_a)->next->next->content))
-			ft_rotate_a(head_a, 0/*, head_b*/);
-		else
-			ft_swap_a(head_a, 0/*, head_b*/);
-	}
-}
-
-void	ft_three_case_3_4(t_list **head_a)
-{
-	if (((*head_a)->content > (*head_a)->next->content)
-		&& ((*head_a)->next->content > (*head_a)->next->next->content)
-		&& (*head_a)->content > (*head_a)->next->next->content)
-	{
-		ft_swap_a(head_a, 0/*, head_b*/);
-		ft_rrotate_a(head_a, 0/*, head_b*/);
-	}
-	else if (((*head_a)->content < (*head_a)->next->content)
-		&& ((*head_a)->next->content > (*head_a)->next->next->content)
-		&& (*head_a)->content < (*head_a)->next->next->content)
-	{
-		ft_rrotate_a(head_a, 0/*, head_b*/);
-		ft_swap_a(head_a, 0/*, head_b*/);
-	}
-}
-
 void	ft_four_or_less(t_list **head_a, t_list **head_b, int c, int small)
 {
 	if (c == 3)

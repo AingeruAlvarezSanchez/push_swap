@@ -40,19 +40,32 @@
 
 void	ft_three_cases(t_list **head_a/*, t_list **head_b*/)
 {
-	if ((((*head_a)->content < (*head_a)->next->content)
-			&& ((*head_a)->next->content > (*head_a)->next->next->content)
-			&& ((*head_a)->content > (*head_a)->next->next->content))
-		|| (((*head_a)->content > (*head_a)->next->content)
-			&& ((*head_a)->next->content < (*head_a)->next->next->content)))
-		ft_three_case_1_2(head_a);
-	else if ((((*head_a)->content > (*head_a)->next->content)
-			&& ((*head_a)->next->content > (*head_a)->next->next->content)
-			&& ((*head_a)->content > (*head_a)->next->next->content))
-		|| (((*head_a)->content < (*head_a)->next->content)
-			&& ((*head_a)->next->content > (*head_a)->next->next->content)
-			&& (*head_a)->content < (*head_a)->next->next->content))
-		ft_three_case_3_4(head_a);
+	int	fs;
+	int	sc;
+	int	th;
+
+	fs = (*head_a)->content;
+	sc = (*head_a)->next->content;
+	th = (*head_a)->next->next->content;
+	if (fs < sc && sc > th && fs > th)
+		ft_rrotate_a(head_a, 0/*, head_b*/);
+	else if(fs > sc && sc < th) 
+	{
+		if (fs > th)
+			ft_rotate_a(head_a, 0/*, head_b*/);
+		else
+			ft_swap_a(head_a, 0/*, head_b*/);
+	}
+	else if (fs > sc && sc > th && fs > th)
+	{
+		ft_swap_a(head_a, 0/*, head_b*/);
+		ft_rrotate_a(head_a, 0/*, head_b*/);
+	}
+	else if (fs < sc && sc > th && fs < th) 
+	{
+		ft_rrotate_a(head_a, 0/*, head_b*/);
+		ft_swap_a(head_a, 0/*, head_b*/);
+	}
 }
 
 void	ft_five_or_less(t_list **head_a, t_list **head_b)

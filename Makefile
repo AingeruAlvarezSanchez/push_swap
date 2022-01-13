@@ -1,8 +1,8 @@
 NAME = push_swap
 
 RM = rm -rf
-CC = clang
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -g3
+CC = cc
+FLAGS = -Wall -Werror -Wextra -g -fsanitize=address -g3
 FILES = push_swap			\
 		check_errors		\
 		short_cases			\
