@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
 /*void ft_imprimir(t_list *head_a, t_list *head_b)
 {
     int i;
@@ -37,60 +36,10 @@
     printf("\t|-------------|\t|-------------|\n");
 }*/
 
-int	ft_refind_small(t_list *head_a, int small)
-{
-	t_list	*aux;
-
-	aux = head_a;
-	small = INT_MAX;
-	while (aux)
-	{
-		if (aux->content < small && aux->checked == 0)
-		{
-			small = aux->content;
-			aux->checked = 1;
-		}
-		aux = aux->next;
-	}
-	printf("SMALL: %i\n", small);
-	return (small);
-}
-
-void	ft_give_pos(t_list **head_a, int small, int c)
-{
-	int		count;
-	int		i;
-	t_list	*aux;
-
-	aux = *head_a;
-	count = c + 1;
-	i = 1; ////cambiar a 0
-	while (--count)
-	{
-		while (aux)
-		{
-			printf ("AUX_CONT; %i CHECK: %i\n", aux->content, aux->checked);
-			if (aux->content == small && aux->checked == 0)
-			{
-				aux->pos = i++;
-				small = ft_refind_small(*head_a, small);
-				aux = *head_a;
-				break ;
-			}
-			aux = aux->next;
-		}	
-	}
-	aux = *head_a;
-	while (aux)
-	{
-		printf("HEAD_POS: %i CHECK; %i\n", aux->pos, aux->checked);
-		aux = aux->next;
-	}
-}
 
 void	ft_radix(t_list **head_a, t_list **head_b, int small, int c)
 {
-	ft_give_pos(head_a, small, c);
+	ft_give_pos(*head_a, small);
 	/*while (checker)
 	{
 		if (checker->content > checker->next->content)

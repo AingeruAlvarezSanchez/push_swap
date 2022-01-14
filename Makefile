@@ -5,8 +5,8 @@ CC = cc
 FLAGS = -Wall -Werror -Wextra -g -fsanitize=address -g3
 FILES = push_swap			\
 		check_errors		\
-		short_cases			\
-		push_swap_utils1	\
+		short_cases		\
+		push_swap_utils		\
 		push_swap_moves1	\
 		push_swap_moves2	\
 		push_swap_moves3
