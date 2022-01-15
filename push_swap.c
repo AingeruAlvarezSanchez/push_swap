@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*void ft_imprimir(t_list *head_a, t_list *head_b)
+
+void ft_imprimir(t_list *head_a, t_list *head_b)
 {
     int i;
 
@@ -34,26 +35,59 @@
         i++;
     }
     printf("\t|-------------|\t|-------------|\n");
-}*/
-void	ft_big_binary(int biggest, int count)
+}
+
+int	ft_big_binary(int count, t_list *head_a)
 {
+	int	iteration;
+	int	biggest;
+
+	biggest = ft_lstbiggest(head_a);
+	iteration = 0;
 	while (biggest)	
 	{
 		biggest >>= 1;
+		iteration++;
+	}
+	return (iteration);
+}
+
+void	ft_algorithm(t_list **head_a, t_list **head_b, int bitpos)
+{
+	t_list	*aux;
+
+	aux = *head_a;
+	while (aux)
+	{
+		if (aux->pos & (1 << bitpos))
+			ft_push_b(head_a, head_b);
+		aux = aux->next;
 	}
 }
 
 void	ft_radix(t_list **head_a, t_list **head_b, int small, int c)
 {
-	t_list	*aux;
-	int		biggest;
-	int		count;
-	int		i;
+	t_list	*aux_a;
+	t_list	*aux_b;
+	int	count;
+	int	i;
+	int	bitpos;
 
-	aux = *head_a;
+	aux_a = *head_a;
+	aux_b = *head_b;
 	ft_give_pos(*head_a, small);
-	biggest = ft_lstbiggest(*head_a);
-	count = ft_big_binary(biggest, count);
+	count = ft_big_binary(count, *head_a);
+	bitpos = 0;
+	while (count--)
+	{
+		ft_algorithm(head_a, head_b, bitpos);
+		while (aux_b)
+		{
+			ft_push_a(head_a, head_b);
+			aux_b = aux_b->next;
+		}
+		bitpos++;
+	}
 }
 
 int	main(int argc, char **argv)
