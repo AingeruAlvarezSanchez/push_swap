@@ -70,7 +70,7 @@ void	ft_give_pos(t_list *head_a, int small)
 	t_list	*aux;
 
 	aux = head_a;
-	i = 1; 
+	i = 0; 
 	while (aux)
 	{
 		if (aux->content == small && aux->checked == 0)

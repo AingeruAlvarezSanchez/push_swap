@@ -16,6 +16,7 @@ SRC =	ft_atoi.c	\
 		ft_isdigit.c \
 		ft_strlen.c		\
 		ft_strlcpy.c	\
+		ft_num_to_binary.c \
 		ft_split.c 
 
 SRC_BONUS = ft_lstnew.c			\

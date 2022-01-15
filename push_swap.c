@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:52:46 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/13 16:10:12by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:10:12 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@
     }
     printf("\t|-------------|\t|-------------|\n");
 }*/
-
-
 void	ft_radix(t_list **head_a, t_list **head_b, int small, int c)
 {
+	t_list	*aux;
+
+	aux = *head_a;
 	ft_give_pos(*head_a, small);
-	/*while (checker)
+	while (aux)
 	{
-		if (checker->content > checker->next->content)
-			ft_radix(head_a, head_b, small, c);
-		checker = checker->next;
-	}*/
+		aux->pos = ft_num_to_binary(aux->pos);
+		aux = aux->next;
+	}
 }
 
 int	main(int argc, char **argv)
