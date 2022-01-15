@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils1.c                                 :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:11:16 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/13 13:33:44 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/15 11:50:24 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_give_pos(t_list *head_a, int small)
 	t_list	*aux;
 
 	aux = head_a;
-	i = 0; 
+	i = 0;
 	while (aux)
 	{
 		if (aux->content == small && aux->checked == 0)
@@ -84,4 +84,3 @@ void	ft_give_pos(t_list *head_a, int small)
 		aux = aux->next;
 	}
 }
-

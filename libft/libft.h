@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 12:07:09 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/13 18:37:02 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/15 12:39:08 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_list {
 	int				content;
 	int				pos;
+	char			*b_pos;
 	int				checked;
 	struct s_list	*next;
 }	t_list;
@@ -32,8 +33,10 @@ int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 int		ft_lstlast_count(t_list *lst);
 int		ft_lstsmallest(t_list *lst);
+int		ft_lstbiggest(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_check_best_option(t_list *lst, int count, int smallest);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_num_to_binary(int num);
 
 #endif
