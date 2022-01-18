@@ -52,15 +52,42 @@ int	ft_big_binary(int count, t_list *head_a)
 	return (iteration);
 }
 
+int	ft_lstfind_pos(t_list *lst, int number)
+{
+	t_list *aux;
+	int	i;
+
+	aux = lst;
+	i = 0;
+	while (aux)
+	{
+		if (aux->content == number)
+			return (i);
+		i++;
+		aux = aux->next;
+	}
+	return (i);
+}
+
 void	ft_algorithm(t_list **head_a, t_list **head_b, int bitpos)
 {
 	t_list	*aux;
+	int	to_move;
+	int	pos;
 
 	aux = *head_a;
 	while (aux)
 	{
 		if (aux->pos & (1 << bitpos))
+		{
+			to_move = aux->content;
+			pos = ft_lstfind_pos(*head_a, to_move);
+			while ((*head_a)->content != to_move)
+				ft_rotate_a(head_a, 0);
 			ft_push_b(head_a, head_b);
+			aux = *head_a;
+			continue ;
+		}
 		aux = aux->next;
 	}
 }
@@ -74,15 +101,16 @@ void	ft_radix(t_list **head_a, t_list **head_b, int small, int c)
 	int	bitpos;
 
 	aux_a = *head_a;
-	aux_b = *head_b;
 	ft_give_pos(*head_a, small);
 	count = ft_big_binary(count, *head_a);
 	bitpos = 0;
 	while (count--)
 	{
 		ft_algorithm(head_a, head_b, bitpos);
+		aux_b = *head_b;
 		while (aux_b)
 		{
+			ft_reorganize_b();
 			ft_push_a(head_a, head_b);
 			aux_b = aux_b->next;
 		}

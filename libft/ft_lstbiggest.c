@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-int	ft_lstbiggest(t_list *lst)
+int	ft_lstbiggest(t_list *lst) 
 {
-	int	smallest;
+	int	biggest;
 
-	smallest = lst->content;
+	biggest = lst->content;
 	if (!lst)
 		return (0);
 	while (lst)
 	{
-		if (smallest < lst->content)
-			smallest = lst->content;
+		if (biggest < lst->content)
+			biggest = lst->content;
 		lst = lst->next;
 	}
-	return (smallest);
+	return (biggest);
 }

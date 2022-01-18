@@ -18,7 +18,7 @@
 typedef struct s_list {
 	int				content;
 	int				pos;
-	char			*b_pos;
+	char				*b_pos;
 	int				checked;
 	struct s_list	*next;
 }	t_list;
