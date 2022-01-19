@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 12:29:57 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/19 15:29:10 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:10:42 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_rrotate_b(t_list **head_b, int check);
 void	ft_rrotate_ab(t_list **head_a, t_list **head_b);
 void	ft_five_or_less(t_list **head_a, t_list **head_b, int small, int c);
 void	ft_give_pos(t_list *head_a, int small);
-int		ft_big_binary(int count, t_list *head_a);
+int		ft_big_binary(t_list *head_a);
+void	ft_radix(t_list **head_a, t_list **head_b, int small);
 
 #endif

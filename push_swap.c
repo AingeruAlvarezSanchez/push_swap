@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:52:46 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/19 16:31:21 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:09:02 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,17 @@ void	ft_back_to_a(t_list **head_a, t_list **head_b)
 	}
 }
 
-void	ft_radix(t_list **head_a, t_list **head_b, int small, int c)
+void	ft_radix(t_list **head_a, t_list **head_b, int small)
 {
-	int	count;
-	int	i;
-	int	iterations;
-	int	bitpos;
+	int		count;
+	int		i;
+	int		bitpos;
+	t_list	*lst;
 
 	ft_give_pos(*head_a, small);
-	count = ft_big_binary(count, *head_a);
+	lst = *head_a;
+	count = ft_big_binary(*head_a);
 	bitpos = 0;
-	iterations = ft_lstlast_count(*head_a);
 	i = 0;
 	while (count--)
 	{
@@ -102,8 +102,10 @@ int	main(int argc, char **argv)
 	ft_already_sorted(head_a);
 	smallest = ft_lstsmallest(head_a);
 	count = ft_lstlast_count(head_a);
-	ft_five_or_less(&head_a, &head_b, smallest, count);
-	///////////////////////ft_radix(&head_a, &head_b, smallest, count);
+	if (argc <= 6)
+		ft_five_or_less(&head_a, &head_b, smallest, count);
+	else
+		ft_radix(&head_a, &head_b, smallest);
 	free (head_b);
 	return (0);
 }

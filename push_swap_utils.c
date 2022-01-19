@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 15:11:16 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/19 15:28:40 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/01/19 18:07:50 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/01/19 18:08:16 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ t_list	*ft_get_args(int argc, char **argv, t_list *head_a)
 		ft_nonum(str);
 		i = 0;
 		while (str[i])
+		{
 			head_a = ft_newnode(head_a, ft_atoi(str[i++]));
+		}
 		while (i != 0)
 			free (str[--i]);
 		free (str);
@@ -64,6 +66,18 @@ int	ft_refind_small(t_list *head_a, int small)
 	return (small);
 }
 
+void	ft_initialize_checked(t_list *head_a)
+{
+	t_list	*aux;
+
+	aux = head_a;
+	while (aux)
+	{
+		aux->checked = 0;
+		aux = aux->next;
+	}
+}
+
 void	ft_give_pos(t_list *head_a, int small)
 {
 	int		i;
@@ -71,6 +85,7 @@ void	ft_give_pos(t_list *head_a, int small)
 
 	aux = head_a;
 	i = 0;
+	ft_initialize_checked(head_a);
 	while (aux)
 	{
 		if (aux->content == small && aux->checked == 0)
@@ -83,19 +98,4 @@ void	ft_give_pos(t_list *head_a, int small)
 		}
 		aux = aux->next;
 	}
-}
-
-int	ft_big_binary(int count, t_list *head_a)
-{
-	int	iteration;
-	int	biggest;
-
-	biggest = ft_lstbiggest(head_a);
-	iteration = 0;
-	while (biggest)
-	{
-		biggest >>= 1;
-		iteration++;
-	}
-	return (iteration);
 }

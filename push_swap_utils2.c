@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstbiggest.c                                    :+:      :+:    :+:   */
+/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 12:22:18 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/19 16:50:35 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/01/19 18:08:31 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/01/19 18:08:49 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_lstbiggest(t_list *lst)
+int	ft_biggest_pos(t_list *lst)
 {
-	int	biggest;
+	int		biggest;
 
-	biggest = lst->content;
-	if (!lst)
-		return (0);
+	biggest = lst->pos;
 	while (lst)
 	{
-		if (biggest < lst->content)
-			biggest = lst->content;
+		if (biggest < lst->pos)
+			biggest = lst->pos;
 		lst = lst->next;
 	}
 	return (biggest);
+}
+
+int	ft_big_binary(t_list *head_a)
+{
+	int	iteration;
+	int	biggest;
+
+	biggest = ft_biggest_pos(head_a);
+	iteration = 0;
+	while (biggest)
+	{
+		biggest >>= 1;
+		iteration++;
+	}
+	return (iteration);
 }
