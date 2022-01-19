@@ -6,13 +6,13 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:55:29 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/13 14:39:51 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/19 15:25:12 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_three_cases(t_list **head_a/*, t_list **head_b*/)
+void	ft_three_cases(t_list **head_a)
 {
 	int	fs;
 	int	sc;
@@ -22,20 +22,20 @@ void	ft_three_cases(t_list **head_a/*, t_list **head_b*/)
 	sc = (*head_a)->next->content;
 	th = (*head_a)->next->next->content;
 	if (fs < sc && sc > th && fs > th)
-		ft_rrotate_a(head_a, 0/*, head_b*/);
+		ft_rrotate_a(head_a, 0);
 	else if (fs > sc && sc < th && fs > th)
-		ft_rotate_a(head_a, 0/*, head_b*/);
+		ft_rotate_a(head_a, 0);
 	else if (fs > sc && sc < th && fs < th)
-		ft_swap_a(head_a, 0/*, head_b*/);
+		ft_swap_a(head_a, 0);
 	else if (fs > sc && sc > th && fs > th)
 	{
-		ft_swap_a(head_a, 0/*, head_b*/);
-		ft_rrotate_a(head_a, 0/*, head_b*/);
+		ft_swap_a(head_a, 0);
+		ft_rrotate_a(head_a, 0);
 	}
 	else if (fs < sc && sc > th && fs < th)
 	{
-		ft_rrotate_a(head_a, 0/*, head_b*/);
-		ft_swap_a(head_a, 0/*, head_b*/);
+		ft_rrotate_a(head_a, 0);
+		ft_swap_a(head_a, 0);
 	}
 }
 

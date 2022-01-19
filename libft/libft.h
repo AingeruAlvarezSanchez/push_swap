@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 12:07:09 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/15 12:39:08 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/19 11:29:45 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 typedef struct s_list {
 	int				content;
 	int				pos;
-	char				*b_pos;
 	int				checked;
 	struct s_list	*next;
 }	t_list;

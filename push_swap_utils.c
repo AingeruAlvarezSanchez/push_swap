@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:11:16 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/15 11:50:24 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/19 15:28:40 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,19 @@ void	ft_give_pos(t_list *head_a, int small)
 		}
 		aux = aux->next;
 	}
+}
+
+int	ft_big_binary(int count, t_list *head_a)
+{
+	int	iteration;
+	int	biggest;
+
+	biggest = ft_lstbiggest(head_a);
+	iteration = 0;
+	while (biggest)
+	{
+		biggest >>= 1;
+		iteration++;
+	}
+	return (iteration);
 }
