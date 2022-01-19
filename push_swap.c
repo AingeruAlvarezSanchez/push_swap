@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:52:46 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/19 15:30:30 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:31:21 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 	smallest = ft_lstsmallest(head_a);
 	count = ft_lstlast_count(head_a);
 	ft_five_or_less(&head_a, &head_b, smallest, count);
-	ft_radix(&head_a, &head_b, smallest, count);
+	///////////////////////ft_radix(&head_a, &head_b, smallest, count);
 	free (head_b);
 	return (0);
 }
