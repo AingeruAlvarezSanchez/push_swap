@@ -6,7 +6,7 @@
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:16:32 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/01/13 14:27:38 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/01/20 10:40:32 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ void	ft_check_minmax(long num, long var)
 	}
 }
 
+void	ft_error(void)
+{
+	write(1, "Error\n", 6);
+	exit (1);
+}
+
 int	ft_atoi(const char *str)
 {
 	long	num;
@@ -54,7 +60,7 @@ int	ft_atoi(const char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] < 48 || str[i] > 57)
-			break ;
+			ft_error();
 		num = num * 10 + (str[i] - 48);
 		i++;
 	}
